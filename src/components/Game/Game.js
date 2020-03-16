@@ -21,29 +21,29 @@ const items = [
 ];
 
 const Game = () => {
-  const [foods, setFoods] = useState([]);
+  const [candidates, setCandidates] = useState([]);
   const [displays, setDisplays] = useState([]);
   const [winners, setWinners] = useState([]);
   useEffect(() => {
     items.sort(() => Math.random() - 0.5);
-    setFoods(items);
+    setCandidates(items);
     setDisplays([items[0], items[1]]);
   }, []);
 
-  const clickHandler = food => () => {
-    if (foods.length <= 2) {
+  const clickHandler = candidate => () => {
+    if (candidates.length <= 2) {
       if (winners.length === 0) {
-        setDisplays([food]);
+        setDisplays([candidate]);
       } else {
-        let updatedFood = [...winners, food];
-        setFoods(updatedFood);
-        setDisplays([updatedFood[0], updatedFood[1]]);
+        let updatedCandidate = [...winners, candidate];
+        setCandidates(updatedCandidate);
+        setDisplays([updatedCandidate[0], updatedCandidate[1]]);
         setWinners([]);
       }
-    } else if (foods.length > 2) {
-      setWinners([...winners, food]);
-      setDisplays([foods[2], foods[3]]);
-      setFoods(foods.slice(2));
+    } else if (candidates.length > 2) {
+      setWinners([...winners, candidate]);
+      setDisplays([candidates[2], candidates[3]]);
+      setCandidates(candidates.slice(2));
     }
   };
   return (
@@ -52,7 +52,7 @@ const Game = () => {
       {displays.map(d => {
         return (
           <div className="flex-1" key={d.name} onClick={clickHandler(d)}>
-            <img className="food-img" src={d.src} />
+            <img className="candidate-img" src={d.src} alt={d.name} />
             <div className="name">{d.name}</div>
           </div>
         );

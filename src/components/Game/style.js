@@ -22,13 +22,13 @@ export const FlexBox = styled.div`
     background-color: black;
     position: relative;
   }
-  .food-img {
     width: 100%;
     height: 100%;
+  .candidate-img {
     transition: 0.5s;
     cursor: pointer;
   }
-  .food-img:hover {
+  .candidate-img:hover {
     transform: scale(1.1);
     opacity: 0.8;
   }
